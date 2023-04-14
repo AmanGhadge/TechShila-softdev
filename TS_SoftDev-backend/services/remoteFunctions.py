@@ -114,6 +114,11 @@ def checkUser(id,passcode):
     con.commit()
     return command
 
+def newUser(id,passcode):
+    cur.execute(str("INSERT INTO public.commands(id, passcode) VALUES (\'"+id+" \', \'"+passcode+"\')"))
+    con.commit()
+
+
 # to close cursor
 def close():
     con.close()

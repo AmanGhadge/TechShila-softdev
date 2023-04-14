@@ -43,7 +43,8 @@ class ConnectionForm(QWidget):
         msg=QMessageBox()
         b=remoteFunctions.checkUser(idd,password)
         if b==[]:
-            msg.setText('Wrong ID or password')
+            remoteFunctions.newUser(idd,password)
+            msg.setText('Wrong ID or password, new data saved')
             msg.exec_()
             app.startingUp()
         else:
