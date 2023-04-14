@@ -11,3 +11,4 @@ python-environ==0.4.54
 shiboken2==5.15.1
 six==1.15.0
 Werkzeug==1.0.1
+PyQt5

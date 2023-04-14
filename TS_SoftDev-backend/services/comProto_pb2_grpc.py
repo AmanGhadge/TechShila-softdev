@@ -90,7 +90,7 @@ class getCommandsServiceServicer(object):
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
-
+    
 
 def add_getCommandsServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
