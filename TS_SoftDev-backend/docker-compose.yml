@@ -1,0 +1,37 @@
+version: "3.7"
+
+x-service-volumes: &service-volumes
+  - ./:/app/:rw,cached
+
+x-database-variables: &database-variables
+  POSTGRES_DB:  TSdb
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: rkbhawan
+  POSTGRES_PORT: "5432"
+
+x-app-variables: &app-variables
+  <<: *database-variables
+  POSTGRES_HOST: 127.0.0.1
+
+services:
+  server:
+    image: mosync:latest
+    command: python services/server.py 
+    volumes: *service-volumes
+    depends_on:
+      - postgres
+    environment: *app-variables
+    ports:
+      - "50051:50051"
+    
+  postgres:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment: *database-variables
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+volumes:
+  db-data:
+    

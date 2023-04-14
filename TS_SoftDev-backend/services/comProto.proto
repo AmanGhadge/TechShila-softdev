@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+message commandMessage{
+    string one = 1;
+    string two = 2;
+    string three = 3;
+    string four = 4;
+    string five = 5;
+    string id = 6;
+    string passcode = 7;
+    string getCommand = 8;
+    string uidLatest = 9;
+}
+
+message latestCommand{
+    string command = 1;
+    string response = 2;
+    string uid = 3;
+    string id=4;
+    string passcode=5;
+    repeated string resList=6;
+}
+
+service commandService{
+    rpc topCommand(commandMessage) returns (commandMessage) {}
+}
+
+service getCommandsService{
+    rpc getCommands(commandMessage) returns (stream commandMessage) {}
+}
+
+service sendResponse{
+    rpc setCommandResponse(latestCommand) returns (latestCommand) {}
+}
+service getResponse{
+    rpc getCommandResponse(latestCommand) returns (stream latestCommand) {}
+}
